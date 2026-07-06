@@ -1,0 +1,23 @@
+// Last updated: 7/6/2026, 12:02:59 PM
+class Solution {
+public:
+    int solve(TreeNode* root) {
+        if(root == NULL)
+            return 0;
+
+        if(root->left == NULL && root->right == NULL)
+            return 1;
+
+        if(root->left == NULL)
+            return 1 + solve(root->right);
+
+        if(root->right == NULL)
+            return 1 + solve(root->left);
+
+        return 1 + min(solve(root->left), solve(root->right));
+    }
+
+    int minDepth(TreeNode* root) {
+        return solve(root);
+    }
+};
